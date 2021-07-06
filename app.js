@@ -3,22 +3,21 @@ function systemClick() {
 }
 
 function blankClick() {
-    // document.getElementById('window-blank').addEventListener("click", function changeContent() {
-    //   window.open('https://www.sensibull.com', '_blank');
-    // });
-    // window.open('https://www.sensibull.com', '_blank');
-    openLink()
+    window.open('https://www.sensibull.com', '_blank');
 }
 
+function chromeInUrl() {
+    const newUrl = 'googlechrome://navigate?url=' + url
+    window.open(newUrl, '_system', 'location=yes', replace);
+}
 
-function openLink() {
+function intentInUrl() {
 
   const standalone = window.navigator.standalone;
   const userAgent = window.navigator.userAgent.toLowerCase();
   const safari = /safari/.test(userAgent);
   const ios = /iphone|ipod|ipad/.test(userAgent);
 
-  let qq;
   let url = 'https://www.sensibull.com'
 
   if (ios) {
@@ -30,14 +29,13 @@ function openLink() {
     }
   } else {
     const newUrl = 'googlechrome://navigate?url=' + url
-    // if (userAgent.includes('wv')) {
-    //     // Android webview
-    //     window.close(); // Close the empty view window
-    //     const winloc = 'intent:' + url + '#Intent;end';
-    //     window.location = winloc;
-    //     return
-    // }
-        window.open(newUrl, '_system', 'location=yes', replace);
+    if (userAgent.includes('wv')) {
+        // Android webview
+        window.close(); // Close the empty view window
+        const winloc = 'intent:' + url + '#Intent;end';
+        window.location = winloc;
+        return
+    }
   }
   window.open(url, '_blank');
 
