@@ -29,13 +29,15 @@ function openLink() {
         return
     }
   } else {
-    if (userAgent.includes('wv')) {
-        // Android webview
-        window.close(); // Close the empty view window
-        const winloc = 'intent:' + url + '#Intent;end';
-        window.location = winloc;
-        return
-    }
+    const newUrl = 'googlechrome://navigate?url=' + url
+    // if (userAgent.includes('wv')) {
+    //     // Android webview
+    //     window.close(); // Close the empty view window
+    //     const winloc = 'intent:' + url + '#Intent;end';
+    //     window.location = winloc;
+    //     return
+    // }
+        window.open(newUrl, '_system', 'location=yes', replace);
   }
   window.open(url, '_blank');
 
